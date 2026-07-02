@@ -4,3 +4,7 @@ Responsible for the compiler's intermediate representation. Consumes the Evidenc
 Graph and produces the Authority Graph, the IR that the Constitutional Engine
 checks.
 """
+
+from authority_compiler.authority.interfaces import AuthorityBuilder, AuthorityGraph
+
+__all__ = ["AuthorityBuilder", "AuthorityGraph"]

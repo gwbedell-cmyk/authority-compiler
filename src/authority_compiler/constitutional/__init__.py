@@ -4,3 +4,10 @@ Responsible for checking and validating the Authority Graph. Consumes the
 Authority Graph (IR) and determines whether it is admissible before the Authority
 ABI is emitted.
 """
+
+from authority_compiler.constitutional.interfaces import (
+    ConstitutionalEngine,
+    ConstitutionalVerdict,
+)
+
+__all__ = ["ConstitutionalEngine", "ConstitutionalVerdict"]
