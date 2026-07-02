@@ -1,11 +1,8 @@
 """Public interface for the Authority Graph (IR) stage.
 
-Defines the Authority Graph artifact (:class:`AuthorityGraph`), the compiler's
-intermediate representation, and the contract for deriving it from an Evidence
-Graph (:class:`AuthorityBuilder`).
-
-The representation of :class:`AuthorityGraph` is fixed by specification, not by
-this module; it is intentionally left opaque here.
+Defines the contract for deriving an Authority Graph from an Evidence Graph
+(:class:`AuthorityBuilder`). The Authority Graph artifact itself is defined in
+:mod:`authority_compiler.authority.artifacts`.
 """
 
 from __future__ import annotations
@@ -14,17 +11,8 @@ import abc
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from authority_compiler.evidence.interfaces import EvidenceGraph
-
-
-class AuthorityGraph(abc.ABC):
-    """The Authority Graph artifact: the compiler's intermediate representation.
-
-    An opaque handle representing authority as an intermediate representation,
-    derived from the Evidence Graph and consumed by the Constitutional Engine.
-    Its concrete representation is defined by the relevant ACS specification and
-    is not fixed by this interface.
-    """
+    from authority_compiler.authority.artifacts import AuthorityGraph
+    from authority_compiler.evidence.artifacts import EvidenceGraph
 
 
 class AuthorityBuilder(abc.ABC):
@@ -32,8 +20,8 @@ class AuthorityBuilder(abc.ABC):
 
     Purpose:
         Transform an
-        :class:`~authority_compiler.evidence.interfaces.EvidenceGraph` into an
-        :class:`AuthorityGraph`.
+        :class:`~authority_compiler.evidence.artifacts.EvidenceGraph` into an
+        :class:`~authority_compiler.authority.artifacts.AuthorityGraph`.
 
     Responsibilities:
         - Lower structured evidence into the compiler's intermediate
@@ -41,11 +29,12 @@ class AuthorityBuilder(abc.ABC):
         - Produce an Authority Graph suitable for constitutional evaluation.
 
     Inputs:
-        An :class:`~authority_compiler.evidence.interfaces.EvidenceGraph`
+        An :class:`~authority_compiler.evidence.artifacts.EvidenceGraph`
         artifact.
 
     Outputs:
-        An :class:`AuthorityGraph` artifact.
+        An :class:`~authority_compiler.authority.artifacts.AuthorityGraph`
+        artifact.
 
     Invariants:
         - The builder lowers; it does not evaluate admissibility. Judging the

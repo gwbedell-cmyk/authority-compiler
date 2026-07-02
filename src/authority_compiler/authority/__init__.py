@@ -5,6 +5,7 @@ Graph and produces the Authority Graph, the IR that the Constitutional Engine
 checks.
 """
 
-from authority_compiler.authority.interfaces import AuthorityBuilder, AuthorityGraph
+from authority_compiler.authority.artifacts import AuthorityGraph
+from authority_compiler.authority.interfaces import AuthorityBuilder
 
 __all__ = ["AuthorityBuilder", "AuthorityGraph"]

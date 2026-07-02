@@ -10,7 +10,7 @@ import abc
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from authority_compiler.abi.interfaces import NAct
+    from authority_compiler.abi.artifacts import NAct
     from authority_compiler.testimony.interfaces import TestimonySource
 
 
@@ -33,7 +33,7 @@ class AuthorityCompiler(abc.ABC):
         supplying the testimony to compile.
 
     Outputs:
-        An :class:`~authority_compiler.abi.interfaces.NAct` for testimony that
+        An :class:`~authority_compiler.abi.artifacts.NAct` for testimony that
         compiles and is constitutionally admitted. The disposition of testimony
         that is not admitted is fixed by specification and is out of scope for
         this interface.

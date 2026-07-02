@@ -1,11 +1,8 @@
 """Public interface for the Constitutional Engine stage.
 
-Defines the Constitutional Verdict artifact (:class:`ConstitutionalVerdict`)
-and the contract for producing it from an Authority Graph
-(:class:`ConstitutionalEngine`).
-
-The representation of :class:`ConstitutionalVerdict` is fixed by specification,
-not by this module; it is intentionally left opaque here.
+Defines the contract for constitutionally evaluating an Authority Graph
+(:class:`ConstitutionalEngine`). The Constitutional Verdict artifact itself is
+defined in :mod:`authority_compiler.constitutional.artifacts`.
 """
 
 from __future__ import annotations
@@ -14,17 +11,8 @@ import abc
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from authority_compiler.authority.interfaces import AuthorityGraph
-
-
-class ConstitutionalVerdict(abc.ABC):
-    """The Constitutional Verdict artifact.
-
-    An opaque handle representing the outcome of constitutionally evaluating an
-    Authority Graph — whether the graph is admissible, together with the grounds
-    for that outcome. Its concrete representation is defined by the relevant ACS
-    specification and is not fixed by this interface.
-    """
+    from authority_compiler.authority.artifacts import AuthorityGraph
+    from authority_compiler.constitutional.artifacts import ConstitutionalVerdict
 
 
 class ConstitutionalEngine(abc.ABC):
@@ -32,8 +20,9 @@ class ConstitutionalEngine(abc.ABC):
 
     Purpose:
         Evaluate an
-        :class:`~authority_compiler.authority.interfaces.AuthorityGraph` and
-        return a :class:`ConstitutionalVerdict`.
+        :class:`~authority_compiler.authority.artifacts.AuthorityGraph` and
+        return a
+        :class:`~authority_compiler.constitutional.artifacts.ConstitutionalVerdict`.
 
     Responsibilities:
         - Judge the admissibility of an Authority Graph against the
@@ -41,11 +30,13 @@ class ConstitutionalEngine(abc.ABC):
         - Report the outcome as a verdict that carries its own grounds.
 
     Inputs:
-        An :class:`~authority_compiler.authority.interfaces.AuthorityGraph`
+        An :class:`~authority_compiler.authority.artifacts.AuthorityGraph`
         artifact.
 
     Outputs:
-        A :class:`ConstitutionalVerdict` artifact.
+        A
+        :class:`~authority_compiler.constitutional.artifacts.ConstitutionalVerdict`
+        artifact.
 
     Invariants:
         - The engine evaluates; it does not transform. The Authority Graph it is

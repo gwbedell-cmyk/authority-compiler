@@ -5,6 +5,7 @@ between it. Consumes testimony and produces the Evidence Graph that the Authorit
 Graph is derived from.
 """
 
-from authority_compiler.evidence.interfaces import EvidenceBuilder, EvidenceGraph
+from authority_compiler.evidence.artifacts import EvidenceGraph
+from authority_compiler.evidence.interfaces import EvidenceBuilder
 
 __all__ = ["EvidenceBuilder", "EvidenceGraph"]

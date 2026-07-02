@@ -1,10 +1,8 @@
 """Public interface for the Evidence Graph stage.
 
-Defines the Evidence Graph artifact (:class:`EvidenceGraph`) and the contract
-for deriving it from testimony (:class:`EvidenceBuilder`).
-
-The representation of :class:`EvidenceGraph` is fixed by specification, not by
-this module; it is intentionally left opaque here.
+Defines the contract for deriving an Evidence Graph from testimony
+(:class:`EvidenceBuilder`). The Evidence Graph artifact itself is defined in
+:mod:`authority_compiler.evidence.artifacts`.
 """
 
 from __future__ import annotations
@@ -13,35 +11,28 @@ import abc
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from authority_compiler.testimony.interfaces import Testimony
-
-
-class EvidenceGraph(abc.ABC):
-    """The Evidence Graph artifact.
-
-    An opaque handle representing testimony after it has been structured into
-    evidence and the relationships between it. Its concrete representation is
-    defined by the relevant ACS specification and is not fixed by this
-    interface.
-    """
+    from authority_compiler.evidence.artifacts import EvidenceGraph
+    from authority_compiler.testimony.artifacts import Testimony
 
 
 class EvidenceBuilder(abc.ABC):
     """Contract for deriving an Evidence Graph from testimony.
 
     Purpose:
-        Transform :class:`~authority_compiler.testimony.interfaces.Testimony`
-        into an :class:`EvidenceGraph`.
+        Transform a
+        :class:`~authority_compiler.testimony.artifacts.Testimony` into an
+        :class:`~authority_compiler.evidence.artifacts.EvidenceGraph`.
 
     Responsibilities:
         - Structure testimony into evidence and the relationships between it.
         - Produce a graph suitable as input to the Authority Graph stage.
 
     Inputs:
-        A :class:`~authority_compiler.testimony.interfaces.Testimony` artifact.
+        A :class:`~authority_compiler.testimony.artifacts.Testimony` artifact.
 
     Outputs:
-        An :class:`EvidenceGraph` artifact.
+        An :class:`~authority_compiler.evidence.artifacts.EvidenceGraph`
+        artifact.
 
     Invariants:
         - The builder derives; it does not author. Every element of the produced

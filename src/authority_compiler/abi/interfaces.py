@@ -1,11 +1,8 @@
 """Public interface for the Authority ABI (n[act]) stage.
 
-Defines the n[act] artifact (:class:`NAct`), the compiler's emitted target
-format, and the contract for generating it from a constitutionally valid
-Authority Graph (:class:`NActGenerator`).
-
-The representation of :class:`NAct` is fixed by specification, not by this
-module; it is intentionally left opaque here.
+Defines the contract for generating an n[act] from a constitutionally valid
+Authority Graph (:class:`NActGenerator`). The n[act] artifact itself is defined
+in :mod:`authority_compiler.abi.artifacts`.
 """
 
 from __future__ import annotations
@@ -14,16 +11,8 @@ import abc
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from authority_compiler.authority.interfaces import AuthorityGraph
-
-
-class NAct(abc.ABC):
-    """The n[act] artifact: the compiler's emitted target format.
-
-    An opaque handle representing the Authority ABI produced by the compiler and
-    consumed by the Authority Runtime. Its concrete representation is defined by
-    the relevant ACS specification and is not fixed by this interface.
-    """
+    from authority_compiler.abi.artifacts import NAct
+    from authority_compiler.authority.artifacts import AuthorityGraph
 
 
 class NActGenerator(abc.ABC):
@@ -31,19 +20,19 @@ class NActGenerator(abc.ABC):
 
     Purpose:
         Transform a constitutionally valid
-        :class:`~authority_compiler.authority.interfaces.AuthorityGraph` into an
-        :class:`NAct`.
+        :class:`~authority_compiler.authority.artifacts.AuthorityGraph` into an
+        :class:`~authority_compiler.abi.artifacts.NAct`.
 
     Responsibilities:
         - Emit the Authority ABI (n[act]) for an admitted Authority Graph.
         - Produce output suitable for consumption by the Authority Runtime.
 
     Inputs:
-        An :class:`~authority_compiler.authority.interfaces.AuthorityGraph` that
+        An :class:`~authority_compiler.authority.artifacts.AuthorityGraph` that
         has been admitted by the Constitutional Engine.
 
     Outputs:
-        An :class:`NAct` artifact.
+        An :class:`~authority_compiler.abi.artifacts.NAct` artifact.
 
     Invariants:
         - Generation presupposes admissibility. The generator is invoked only on

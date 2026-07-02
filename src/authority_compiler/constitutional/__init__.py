@@ -5,9 +5,7 @@ Authority Graph (IR) and determines whether it is admissible before the Authorit
 ABI is emitted.
 """
 
-from authority_compiler.constitutional.interfaces import (
-    ConstitutionalEngine,
-    ConstitutionalVerdict,
-)
+from authority_compiler.constitutional.artifacts import ConstitutionalVerdict
+from authority_compiler.constitutional.interfaces import ConstitutionalEngine
 
 __all__ = ["ConstitutionalEngine", "ConstitutionalVerdict"]
