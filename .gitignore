@@ -1,0 +1,39 @@
+# Build output
+/build/
+/dist/
+/out/
+/target/
+*.o
+*.obj
+*.a
+*.lib
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Dependencies
+/node_modules/
+/vendor/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+/tmp/
+/.cache/
+
+# Environment
+.env
+.env.local

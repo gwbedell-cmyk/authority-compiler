@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "authority-compiler"
+version = "0.0.0"
+description = "The Authority Compiler: compiles human testimony into executable authority."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "iThoth Systems Inc." }]
+keywords = [
+    "compiler",
+    "authority",
+    "testimony",
+    "evidence",
+    "constitutional",
+    "abi",
+]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Compilers",
+]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/gwbedell-cmyk/authority-compiler"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/authority_compiler"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+src = ["src", "tests"]
+target-version = "py311"
